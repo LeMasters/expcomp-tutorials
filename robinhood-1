@@ -19,6 +19,122 @@ inside SETUP() is OK.
 */
 
 size(500, 800);
+/*
+As a rule, always make the size function
+the first thing you put inside the setup()
+function.
+*/
+
+/*
+So:  This part is tricky for a number of
+reasons.  We haven't talked about any of
+these issues yet, so just make sense of things
+as you can, and trust we'll get to them
+soon.  For now, let's take things 
+one word at a time.
+
+color a
+
+This tells the computer that the variable
+called "a" is going to be a color.  We
+could also say any of the following:
+
+int a
+float a
+PImage a
+PVector a
+String a
+
+These commands would tell the computer that
+"a" would always be an integer (whole number),
+a float (floating-point number), an image,
+a Vector (2-dimensional point on a grid), or
+a String (text).  This is a process called
+"typing" (as in "what type of data are you
+storing in this variable?").  
+Various computer languages deal with
+typing in different ways.  The more programming
+you do, the more you'll develop a preference
+for languages that "strongly type" variables
+and languages that are untyped.
+
+Now here's the tricky part.  When I typed
+"color a", I was "typing" the variable "a",
+and telling the computer to set aside memory
+for that variable that can store color info.
+
+So why would I say color a = color (#hexcode)?
+'Cause "#hexcode" isn't a variable, right?  it is
+a value (an amount), not a place to store values.
+
+The confusion comes from the fact that the
+computer looks at the word "color" and interprets
+it based on CONTEXT.  Normally -- 95% of the time --
+the computer is TERRIBLE AT UNDERSTANDING CONTEXTS.
+Human beings do CONTEXT -- not computers.  For example,
+when I ask you "What's up, amiga?" -- as I am prone
+to do -- you know that (1) I'm not asking for information
+about the grammatical function of the word "up"; and
+(2) I'm not trying to engage you in a conversation
+in Spanish.  What's more (3) you know I probably don't
+care "what's up," I'm just being friendly.  That's
+CONTEXT.  We're great at it.  Computers not so much.
+
+Normally.  In this case, though, the computer
+can see that the parentheses immediately after
+the word color make a world of difference:
+
+No Parentheses -- a type to assign, or a variable
+Parentheses -- a function, always a function.
+
+In this case, the function COLOR() "mixes up
+some paint" and gives it back to you.  So
+
+color a = color(#FFFFFF);
+
+means "Mix up white paint and store it in
+a color-typed variable called "a."
+
+For what its worth:  Functions always use parentheses,
+because they are tiny programs:  They
+do work for you, and then they RETURN their results.
+
+The function
+
+color(#AAFF30)
+
+"RETURNS" or gives back a result -- a specific color.
+
+The function
+
+abs(-32.99)
+
+"RETURNS" or gives back the floating point value +32.99
+
+The function
+
+round(-32.99)
+
+returns the value -33.
+
+SINCE WE KNOW THE COMPUTER IS DOING WORK FOR US, AND
+SINCE WE KNOW WE'RE GOING TO GET A RESULT, we always
+need to tell the computer what to do with that answer.
+
+That's why we use these variables.
+
+int a = round(100.3);
+
+would put the value 100 into the integer a.
+
+float a = round(100.4);
+
+would put the value 100.0 into the floating-point a.
+(There's some weirdness there, but we'll deal with it later.)
+
+OK.  Enough for now.
+
+*/
 
 color a = color(#0A97D6);
 color b = color(#87A541);
