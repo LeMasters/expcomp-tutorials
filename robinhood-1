@@ -1,0 +1,32 @@
+void setup() {
+
+/*
+Note that in this example, I've put all of my code inside the SETUP() function. How can you tell? Because the opening curly brace (just above) is not closed until after the last line of code. That doesn't make a lot of sense, but it works just fine. As with everything in computer programming, there are at least a dozen other ways to do it. In this case, since we don't need any animation, and we don't need any interaction with humans, and we aren't downloading data from the web, sticking everything inside SETUP() is OK.
+*/
+
+size(500, 800);
+
+color a = color(#0A97D6);
+color b = color(#87A541);
+color c = color(#F2C979);
+color d = color(#F38A30);
+color e = color(#C15033);
+color f = color(#FFFFFF);
+
+background(b);
+
+fill(f);
+ellipse(width/2, height/2, 360, 360);
+
+fill(c);
+ellipse(width/2, height/2, 300, 300);
+
+fill(a);
+ellipse(width/2, height/2, 230, 230);
+
+fill(f);
+ellipse(width/2, height/2, 150, 150);
+
+fill(e);
+ellipse(width/2, height/2, 75, 75);
+}
