@@ -133,8 +133,7 @@ void setup() {
 
   PFont myFont;
 
-  // see the coloration of PFont?  That's a good sign.
-  // Now:
+  // Next:
 
   myFont = createFont("Helvetica-Bold", 130);
   // createFont is a function.  It
