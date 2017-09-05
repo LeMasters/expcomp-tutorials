@@ -1,3 +1,8 @@
+// robinhood-1
+// glemasters
+// updated 4 Sept 2017
+
+
 void setup() {
 
 /*
@@ -20,10 +25,15 @@ inside SETUP() is OK.
 
 size(500, 800);
 /*
-As a rule, always make the size function
-the first thing you put inside the setup()
+As a rule, always make the size() function
+the first thing you call inside the setup()
 function.
 */
+
+// Here's a challenging line of code.  
+// Let's talk about it.
+
+color a = color(#0A97D6);
 
 /*
 So:  This part is tricky for a number of
@@ -33,17 +43,17 @@ as you can, and trust we'll get to them
 soon.  For now, let's take things 
 one word at a time.
 
-color a
+color a;
 
 This tells the computer that the variable
 called "a" is going to be a color.  We
 could also say any of the following:
 
-int a
-float a
-PImage a
-PVector a
-String a
+int a;
+float a;
+PImage a;
+PVector a;
+String a;
 
 These commands would tell the computer that
 "a" would always be an integer (whole number),
@@ -63,6 +73,8 @@ Now here's the tricky part.  When I typed
 and telling the computer to set aside memory
 for that variable that can store color info.
 
+So why repeat the word color?
+
 So why would I say color a = color (#hexcode)?
 'Cause "#hexcode" isn't a variable, right?  it is
 a value (an amount), not a place to store values.
@@ -70,22 +82,65 @@ a value (an amount), not a place to store values.
 The confusion comes from the fact that the
 computer looks at the word "color" and interprets
 it based on CONTEXT.  Normally -- 95% of the time --
-the computer is TERRIBLE AT UNDERSTANDING CONTEXTS.
+the computer is TERRIBLE at UNDERSTANDING CONTEXT.
 Human beings do CONTEXT -- not computers.  For example,
 when I ask you "What's up, amiga?" -- as I am prone
-to do -- you know that (1) I'm not asking for information
+to do -- you know that (1) I'm not really asking for info
 about the grammatical function of the word "up"; and
 (2) I'm not trying to engage you in a conversation
 in Spanish.  What's more (3) you know I probably don't
 care "what's up," I'm just being friendly.  That's
-CONTEXT.  We're great at it.  Computers not so much.
+CONTEXT.  We're great at it.  Computers? Not so much.
 
-Normally.  In this case, though, the computer
-can see that the parentheses immediately after
+Well, normally not so much.  But in this case, 
+yes, the computer does understand some context:
+it can see that the parentheses immediately after
 the word color make a world of difference:
 
-No Parentheses -- a type to assign, or a variable
-Parentheses -- a function, always a function.
+1.  No Parentheses:  a TYPE to assign to a variable 
+(a variable is basically a container to hold one or
+more values; by creating a variable with a specific
+type, we're shaping that container so that it can
+only hold certain things.
+Example:
+
+color myColor;
+int myInteger;
+String firstName;
+int graduationYear;
+
+If I say:
+int graduationYear;
+
+the computer sets aside some space to store 
+the value of graduationYear.  The following
+will make the computer happy:
+
+graduationYear = 0;
+graduationYear = 1998;
+graduationYear = 2030-12;
+
+But since it is an int, the following will
+cause show-stopping errors.
+
+graduationYear = 1999.5;
+graduationYear = 1990+(4 * 0.5);
+graduationYear = 4021 / 2;
+
+2.  Parentheses -- a function! always a function.
+For example:
+print(int(3.14159)) displays:
+3
+
+OR:
+print(float(3)) displays:
+3.0
+
+int() is a function that changes a thing into
+an integer (you'll use it a lot).  float() is 
+a function to change a thing into a floating-point.
+There are many others; those are the easiest
+to understand.
 
 In this case, the function COLOR() "mixes up
 some paint" and gives it back to you.  So
@@ -136,7 +191,7 @@ OK.  Enough for now.
 
 */
 
-color a = color(#0A97D6);
+// color a appears above...
 color b = color(#87A541);
 color c = color(#F2C979);
 color d = color(#F38A30);
