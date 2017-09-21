@@ -149,6 +149,24 @@ void draw() {
 	// to do so here.
 	ellipse(0, 0, dia1 * magnifyS, dia1 * magnifyS);
 
+// now we look at our flag:  Were we going
+// to show the names of the planets?  If yes,
+// then we'll do it... but FIRST, we need
+// to rotate BACKWARDS.  Remember that in order
+// to put the earth in place, we stood on the sun,
+// rotated to face the place where the earth should
+// be, and then translated to that position?  That means
+// that once we get there, we're still pointed
+// at that same angle.  So if we just draw the text at
+// that point, it will appear along that angle, too.
+// To rememdy this, I just "de-rotate" by turning
+// NEGATIVE pos1 degrees.  This is great, too, because
+// it means that when I draw the moon's position, we're
+// starting from a rotation of zero, rather than adding
+// to whatever angle the earth was already at.
+// See for yourself by removing the rotate function
+// below.
+
 	if (flagShowNames == true) {
 		rotate(radians(-pos1));
 		text(name1, dia1 * magnifyS, -dia1 * magnifyS);
