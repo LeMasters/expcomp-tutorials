@@ -1,0 +1,64 @@
+// prof. garrison lemasters
+// program in communications, 
+//   culture, and technology
+// georgetown university
+// October 2017
+
+// mathematical roses/rhodonea
+
+float k, referenceRadius;
+float roseWide, roseHigh;
+int rowCount, colCount;
+
+void setup() {
+  size(500, 500, FX2D);
+  smooth(8);
+  rowCount = 10;
+  colCount = 10;
+  stroke(255);
+  strokeWeight(1);
+  roseWide = width/colCount;
+  roseHigh = height/rowCount;  
+  referenceRadius = roseWide * 0.375;
+  frameRate(1);
+  background(paintBucket());
+}
+
+void draw() {
+  background(paintBucket());
+  stroke(paintBucket());
+  for (int row = 0; row < rowCount; row++) {
+    for (int col = 0; col < colCount; col++) {
+      float x = col * roseWide;
+      float y = row * roseHigh;
+      pushMatrix();
+        fill(paintBucket());
+        stroke(paintBucket());
+        translate(x, y);
+        translate(roseWide * 0.5, roseHigh * 0.5);
+        roseGarden();
+      popMatrix();
+    }
+  }
+  saveFrame("Roses_v3-#####.png");
+}
+
+void roseGarden() {
+  float k1 = int(random(1, 9));
+  float k2 = int(random(1, 11));
+  k = (k1 / k2);
+  // guidelines for this ratio drawn from Wikipedia page
+  // on mathematical roses
+
+  // note that we do a full circle's worth of calculations
+  // 8 times!  This is necessary to draw the full figure.
+
+  beginShape();
+  for (int i = 0; i < 360 * 8; i++) {
+    float r = cos(k * radians(i)) * referenceRadius;
+    float x = r * cos(radians(i));
+    float y = r * sin(radians(i));
+    vertex(x, y);
+  }
+  endShape();
+}
