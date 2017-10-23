@@ -62,3 +62,42 @@ void roseGarden() {
   }
   endShape();
 }
+
+
+
+// these colors originally came from several palettes on kuler.adobe.com.
+// They have since been substantially revised.
+// Stay in school, kids!
+
+color paintBucket() {
+  color[] palette = {
+    #2E112D, 
+    #540032, 
+    #820333, 
+    #C9283E, 
+    #F0433A,
+    #FFFFFF
+  };
+  int n = int(random(palette.length));
+  return palette[n];
+  /*
+    #FFFFFF,
+   #F75674, 
+   #FFCED6, 
+   #E7F8FF, 
+   #98B0CC, 
+   #122742,
+   #0A1214
+   };*/
+
+  /*
+    #EBC9A7, 
+   #FDFDCE, 
+   #F78D8D, 
+   #80A196, 
+   #734652,
+   #FFFFFF,
+   #2E2024
+   };
+   */
+}
