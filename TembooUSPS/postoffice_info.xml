@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CityStateLookupResponse>
+  <ZipCode ID="0">
+    <Zip5>82054</Zip5>
+    <City>CARPENTER</City>
+    <State>WY</State>
+  </ZipCode>
+</CityStateLookupResponse>

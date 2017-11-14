@@ -75,11 +75,11 @@ void setup() {
     // important to use the P2D renderer with this version of
     // UnfoldingMap's API.  
 
-    size(800, 600, P2D);
-    smooth();
+    size(800, 600,P2D );
+    smooth(8);
     
     // How many seconds between each new city?
-    int secondsBetween = 8;
+    int secondsBetween = 4;
     
     framesBetwixt = 60 * secondsBetween;
     
