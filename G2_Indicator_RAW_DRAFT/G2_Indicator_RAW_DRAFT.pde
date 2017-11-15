@@ -1,3 +1,10 @@
+//Garrison LeMasters Georgetown CCT 2017
+//expressive computation -- intermediate API use
+//and simple data visualization; transit to P5JS
+//
+//Please make use of this code as you see fit.
+//
+
 import http.requests.*;
 
 String timeStamp;
@@ -13,7 +20,7 @@ String myStopBusRouteName;
 
 void setup() {
     size(400, 600);
-    frameRate(2);
+    frameRate(6);
     initialRequestFlag = true;
     myStopID = "";
     metroBus = loadImage("metroLogo.png");
@@ -32,8 +39,6 @@ void setup() {
     myDisplay = new Display("G2", "minutes", 0, false);
     WMATAtimer = new Timer(1);
 }
-
-// library stop 1001370
 
 void draw() {
     myDisplay.updateScreen();
@@ -86,7 +91,7 @@ void draw() {
             createTimeStamp();
 
             // create new timer
-            WMATAtimer = new Timer(36); // how many seconds between updates?
+            WMATAtimer = new Timer(64); // how many seconds between updates?
             WMATAtimer.start();
         }
     }
