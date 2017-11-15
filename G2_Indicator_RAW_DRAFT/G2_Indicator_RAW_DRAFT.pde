@@ -1,5 +1,10 @@
 import http.requests.*;
 
+String timeStamp;
+PImage metroBus;
+PFont myType;
+boolean initialRequestFlag;
+Timer WMATAtimer;
 Display myDisplay;
 String apiKEY, apiVALUE;
 String myStopID;
@@ -7,10 +12,15 @@ String myStopName;
 String myStopBusRouteName;
 
 void setup() {
-    size(400, 400);
-    frameRate(1);
-
+    size(400, 600);
+    frameRate(2);
+    initialRequestFlag = true;
     myStopID = "";
+    metroBus = loadImage("metroLogo.png");
+    metroBus.resize(int(width*0.9), 0);
+    myType = createFont("HelveticaNeue-CondensedBlack", 90);
+    textFont(myType);
+    timeStamp = "";
 
     // you want to try and avoid posting this online -- 
     // we can talk about strategies for obfuscation
@@ -18,11 +28,15 @@ void setup() {
     apiKEY = "api_key";
     apiVALUE = "b23a33173a6f44059e3f7a6c286cb881";
 
-    // save the display for later use...
-    // myDisplay = new Display("G2", "minutes", 0, false);
+    // create my display
+    myDisplay = new Display("G2", "minutes", 0, false);
+    WMATAtimer = new Timer(1);
 }
 
+// library stop 1001370
+
 void draw() {
+    myDisplay.updateScreen();
     // First time through the draw() loop, the
     // myStopID String will be empty (see setup() above).
     // We ask..."Is it empty?"  If yes, then we do
@@ -32,6 +46,7 @@ void draw() {
     // 
     if (myStopID == "") {
         lookupStopID();
+
         // when we write software for people to use
         // we need to start thinking about how
         // it will break (and it will always, always break).
@@ -47,18 +62,55 @@ void draw() {
             println("Something is broken.  kthxbye");
             noLoop();
         }
-        // now we get along with the business at hand
+
+        // now we get to the business at hand
     } else {
-        String tempBusData = busDistanceQuery();
-        JSONObject tempJSONData = parseJSONObject(tempBusData);
-        int predictedBusArrival = JSONBreaker(tempJSONData);
-        textSize(220);
-        background(0);
-        fill(255);
-        text(predictedBusArrival, 40, height-120);
-        textSize(28);
-        text("Minutes until arrival",60,height-90);
-        println("Note: At", millis(), "showing", predictedBusArrival, "minutes.");
-        noLoop();
+
+        // check our WMATA timer to see if it is time
+        // to update our bus distance...
+        if (WMATAtimer.clockWatcher() || initialRequestFlag==true) {
+            println(millis(), "starting query series");
+
+            String tempJSONBusData = busDistanceQuery(myStopID);
+            JSONObject tempJSONBusObj = parseJSONObject(tempJSONBusData);
+
+            // JSONBreaker() is a function that actually
+            // locates the number of minutes until the bus arrives.
+
+            int predictedBusArrival = JSONBreaker(tempJSONBusObj);
+            myDisplay.isActive = true;
+            myDisplay.bus = "G2";
+            myDisplay.units = "minutes";
+            myDisplay.timeRemaining = predictedBusArrival;
+            println(millis(), "-->", predictedBusArrival);
+            createTimeStamp();
+
+            // create new timer
+            WMATAtimer = new Timer(36); // how many seconds between updates?
+            WMATAtimer.start();
+        }
     }
+}
+
+void timeStamp() {
+    textAlign(LEFT);
+    textSize(20);
+    fill(128);
+    text(("Last queried: "+timeStamp), 25, height-30);
+}
+
+void createTimeStamp() {
+    String h = str(hour());
+    String m = str(minute());
+    String s = str(second());
+    if (h.length()<2) {
+        h = "0"+h;
+    }
+    if (m.length()<2) {
+        m = "0"+m;
+    }
+    if (s.length()<3) {
+        s = "0"+s;
+    }
+    timeStamp = h+":"+m+":"+s;
 }

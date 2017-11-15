@@ -31,10 +31,17 @@
 // }
 
 
-// we return number of minutes...
-int JSONBreaker(JSONObject bigJSONData) {
-    JSONArray jsonPredictionData = bigJSONData.getJSONArray("Predictions");
-    JSONObject JSONAnswer = jsonPredictionData.getJSONObject(0);
-    int myPrediction = JSONAnswer.getInt("Minutes");
-    return myPrediction;
+// Note that we will need to return number of minutes as an integer.
+
+int JSONBreaker(JSONObject JSONBusObj) {
+    JSONArray jsonPredictionDataArray = JSONBusObj.getJSONArray("Predictions");
+    if (jsonPredictionDataArray.size()>0) {
+        JSONObject JSONAnswer = jsonPredictionDataArray.getJSONObject(0);
+
+        // We're there.  Identify the specific KEY and get the VALUE:
+        int WMATAPrediction = JSONAnswer.getInt("Minutes");
+        return WMATAPrediction;
+    } else {
+        return -1;
+    }
 }
