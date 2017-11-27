@@ -38,14 +38,13 @@ Ball gameBall;
 
 void setup() {
     size(500, 500);
-    smooth(8);
-
+    frameRate(30);
     backgroundColor = color(#455463);
     wallTopLocation = 60;  // 60 pixels from the top of the window
-    totalBrickRows = 4; // 6 rows tall
-    brickWidth = 32; // prescribed brick height and width
-    brickHeight = 12;
-    mortarThickness = 2; // space between bricks
+    totalBrickRows = 6; // 6 rows tall
+    brickWidth = 29; // prescribed brick height and width
+    brickHeight = 13;
+    mortarThickness = 3; // space between bricks
 
     // just internal calculations to figure out how to place
     // the bricks evenly upon the screen, etc.  Some programmers
@@ -293,7 +292,7 @@ class Brick {
 
     void thingsFallApart() {
         if (this.positionY < height) {
-            this.positionY = this.positionY * 1.0125;
+            this.positionY = this.positionY * 1.015;
             this.showBrick();
         }
     }
